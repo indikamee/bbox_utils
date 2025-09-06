@@ -38,14 +38,14 @@ class Ability
       can :manage, :all
     end
     
-    can :manage, Event, id: Event.with_role(:admin, p).pluck(:id)
-    can :bulk_edit, Event, id: Event.with_role([:admin,:agent], p).pluck(:id)
-    can :manage, Ticket, event_id: Event.with_role(:admin, p).pluck(:id)
-    can :manage, Ticket, agent_id: [nil, p.id], event: Event.with_role(:agent, p).pluck(:id)
-    can :read, [:event, :ticket, :person]
+    # can :manage, Event, id: Event.with_role(:admin, p).pluck(:id)
+    # can :bulk_edit, Event, id: Event.with_role([:admin,:agent], p).pluck(:id)
+    # can :manage, Ticket, event_id: Event.with_role(:admin, p).pluck(:id)
+    # can :manage, Ticket, agent_id: [nil, p.id], event: Event.with_role(:agent, p).pluck(:id)
+    # can :read, [:event, :ticket, :person]
    
-    can :read, Event
-    can :read, Ticket
+    # can :read, Event
+    # can :read, Ticket
     can :manage, p
     can :manage, User, id: user&.id
   end

@@ -2,10 +2,10 @@ local: &local
   adapter: postgresql
   encoding: unicode
   host: 172.30.144.1
-  username: tickets
-  password: tickets123
+  username: bbox
+  password: bbox123
   pool: 5
-  database: mora_tickets
+  database: bbox
 
 elephant: &elephant
   adapter: postgresql
@@ -23,7 +23,7 @@ development:
   
 test:
   <<: *local
-  database: mora_tickets_test
+  database: bbox_test
 
 production:
   <<: *elephant

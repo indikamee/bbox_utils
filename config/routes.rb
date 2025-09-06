@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     get :edit_password, on: :member
     patch :update_password, on: :member
   end
-  root "events#index"
+  root "welcome#index"
 
   get 'admin/list_roles'
   get 'admin/list_items'
