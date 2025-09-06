@@ -27,11 +27,15 @@ Rails.application.routes.draw do
     patch :update_password, on: :member
   end
   root "welcome#index"
-
-  get 'admin/list_roles'
-  get 'admin/list_items'
-  post 'admin/create_role'
-  delete 'admin/remove_role'
+  namespace :barcode do
+    get :index
+  end
+  namespace :admin do
+    get :list_roles
+    get :list_items
+    post :create_role
+    delete :remove_role
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
