@@ -258,6 +258,7 @@ GEM
       chunky_png (~> 1.0)
       rqrcode_core (~> 2.0)
     rqrcode_core (2.0.0)
+    rubyzip (3.0.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -344,6 +345,7 @@ DEPENDENCIES
   rails (~> 7.0.6)
   rolify
   rqrcode
+  rubyzip
   sass-rails (~> 6.0)
   stimulus-rails
   turbo-rails

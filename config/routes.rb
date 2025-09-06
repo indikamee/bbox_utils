@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   root "welcome#index"
   namespace :barcode do
     get :index
+    post :generate_labels
   end
   namespace :admin do
     get :list_roles

@@ -63,6 +63,7 @@ gem 'jquery-datatables-rails', git: 'https://github.com/rweng/jquery-datatables-
 
 gem "execjs", "2.8.1"
 
+gem 'rubyzip'
 gem 'prawn'
 gem 'prawn-table'
 

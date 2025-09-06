@@ -1,0 +1,13 @@
+<%= form_with url: barcode_generate_labels_path, 
+              method: :post, 
+              local: true, 
+              data: { turbo: false }, 
+              html: { multipart: true, class: "p-4 border rounded bg-light" } do |form| %>
+  <div class="mb-3">
+    <%= form.label :csv_file, "CSV File", class: "form-label" %>
+    <%= form.file_field :csv_file, accept: '.csv', class: "form-control" %>
+  </div>
+  <div>
+    <%= form.submit "Generate Labels", class: "btn btn-primary" %>
+  </div>
+<% end %>
