@@ -1,0 +1,62 @@
+<div data-controller="tickets">
+<table class="table table-striped" id='tickets_list' data-turbolinks="false" data-tickets-target="ticketsTable">
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Type</th>
+      <th>ID</th>
+      <th>State</th>
+      <th>Price</th>
+      <th>Agent</th>
+      <th>Person</th>
+      <th>Table</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% tickets.sort_by{|t| [t.ticket_type, t.seq]}.each do |ticket| %>
+      <tr>
+        <td><%= link_to ticket.event.id, ticket.event %></td>
+        <td class=<%=ticket.ticket_type%>><%= ticket.ticket_type %></td>
+        <td class=<%=ticket.ticket_type%>><%= ticket.ticket_no %></td>
+        <td class=<%=ticket.state%>><%= ticket.state%>
+          <%= fa_icon('user') if ticket.attended_at.present? %>
+          <% if ticket.attendable? && (can? :bulk_edit, ticket.event)%>
+            <%=link_to fa_icon('check'), flag_attended_ticket_path(ticket), data: { turbo_method: :post}, class:"btn btn-info btn-sm", title: "Mark attended"%>
+          <%end%>
+
+         </td>
+        <td><%= ticket.price %></td>
+        <td><%= (link_to ticket.agent.name, agent_profile_person_path(ticket.agent, event_id: ticket.event.id)) if ticket.agent %></td>
+        <td>
+          <%= (link_to ticket.person.name, ticket.person) if ticket.person %>
+          <%= ticket.notes %> 
+          </td>
+        <td><%= link_to "T:#{ticket.table_id}", show_tickets_event_path(ticket.event, table_id: ticket.table_id) %></td>
+        <td>
+          <%= link_to 'Show', ticket, class:"btn btn-info btn-sm" %>
+          <%= link_to 'Download', ticket_path(ticket, format: :pdf), class:"btn btn-info btn-sm" %>
+          <%= (link_to 'Edit', edit_ticket_path(ticket), class:"btn btn-warning btn-sm") if can? :edit, ticket %>
+          <%= link_to 'Email', email_ticket_path(ticket), data: { turbo_method: :post}, class:"btn btn-info btn-sm" %>
+          
+          <!-- %= link_to 'Destroy', ticket, method: :delete, data: { turbo_method: :delete, turbo_stream: true, turbo_confirm: 'Are you sure remove role?'}, class:"btn btn-danger btn-sm" %-->
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+    <tfoot>
+      <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+      </tr>
+    </tfoot>
+</table>
+</div>

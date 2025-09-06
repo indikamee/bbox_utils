@@ -1,0 +1,272 @@
+
+//@import "color_theme_light";
+@import "color_theme_dark";
+
+
+#main-container {
+  position: relative;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.custom_header,footer-container{
+  background-color:$header-bg !important;
+  color: $header-text!important;
+
+  a{
+    color:$header-a !important;
+    &:hover{
+      color:$header-a-hover!important;
+    }
+    &:focus{
+      background-color:$header-a-focus-bg!important;
+    }
+  }
+}
+
+a{
+  color:$link !important;
+  &:hover{
+    color:$link-hover!important;
+  }
+  &:focus{
+    background-color:$link-focus!important;
+  }
+}
+
+.dropdown-menu{
+  background-color:$header-a-focus-bg !important;
+  a{
+    color:$header-a !important;
+    &:hover{
+      color:$header-bg!important;
+    }
+    &:focus{
+      background-color:$header-a-focus-bg!important;
+    }
+  }
+}
+
+.footer-container {
+  padding: 20px;
+}
+
+
+.devise-container {
+  width: 345px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th {
+  background-color: $th-bg;
+  color: $th-text;
+  padding-bottom: 5px;
+}
+
+td {
+  background-color: $td-bg;
+  color:$td-text;
+  border-top:1px solid $td-border !important;
+  padding-bottom: 7px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+
+
+body {
+  background-color: $body-bg;
+  color:$body-text;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  margin: 33px;
+}
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  margin: 33px;
+}
+
+pre {
+  background-color: $pre-bg;
+  padding: 10px;
+  font-size: 11px;
+}
+
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10px;
+  }
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0;
+    background-color: #c00;
+    color: #fff;
+  }
+
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
+
+label {
+  display: block;
+}
+
+input[type=text],input[type=email],input[type=number],input[type=tel],input[type=email],select ,input[type=date],input[type=search]{
+  background-color:$input-bg;
+  color: $input-text!important;
+  width:100%;
+}
+
+
+
+input:read-only[type=text],input:read-only[type=number],input:read-only[type=tel],input:read-only[type=email],input:read-only[type=date] {
+  background-color: $input-ro-bg;
+}
+
+.header_text {
+  color: $page-title-text;
+  text-align:center;
+  padding-bottom: 10px;
+  border-bottom:1px solid $page-title-border;
+}
+
+.banner_text {
+  font-size: 16px;
+  background-color:$banner-bg ;
+  color:$banner-text;
+  padding: 5px 5px 5px 15px;
+}
+
+
+.new{
+  color: white;
+  font-weight: bold;
+}
+
+.allocated{
+  color: blue;
+  font-weight: bold;
+}
+
+.sold{
+  color: darkorange;
+  font-weight: bold;
+}
+
+.paid{
+  color: darkgreen;
+  font-weight: bold;
+}
+
+
+.cancelled{
+  color: lightcoral;
+  font-weight: bold;
+}
+
+
+//.btn_center_name{
+.btn-primary{
+  font-size: $button-text-size !important;
+  font-weight: $button-text-weight !important;
+  background-color: $button-bg !important;
+  border: 1px $button-border solid  !important;
+  color: $button-text  !important;
+  &:hover{
+    background-color: $button-hover !important;
+  }
+}
+
+.tab_title{
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin:0;
+}
+
+.tabs2{
+  padding-top:20px;
+  
+}
+
+.btn-info{
+  background-color: $btn-info-bg !important;
+  border: none !important;
+  &:hover{
+    background-color: $btn-info-hover !important;
+  }
+}
+
+.menu-buttons{
+  padding: 10px 0 0;
+  margin: 0;
+  //min-width: 400px;
+  li{
+    float: left;
+    padding: 0 10px 10px 0;
+
+    a{
+      padding:10px 10px !important;
+    }
+  }
+}
+
+.pre-formated-text{
+  white-space: pre-wrap;
+}
+
+.with-border {
+  padding: 20px 20px 20px 20px;
+  border: 2px solid $section-border;
+  background-color:$section-bg;
+ }
+
+
+.Student{
+  color:  #8B0000; 
+  font-weight: bold;
+}
+
+.Kids{
+  color: #006400;
+  font-weight: bold;
+}
+
+.Adult{
+  color: black;
+  font-weight: bold;
+}
+
+ /* Container holding the image and the text */

@@ -1,0 +1,11 @@
+
+<h1><%= @event.title %> </h1>
+<p>
+  <strong>State:</strong>
+  <%= @event.state %>
+</p>
+
+<h3><%="Table #{@table_id} - Tickets: #{@tickets.count}" %></h3>
+<%= render "tickets/list", tickets: @tickets%>
+
+<%= link_to 'Back', :back , class:"btn btn-info"%>

@@ -1,0 +1,9 @@
+    <%= @ticket.event.title %>
+Please get your ticket: 
+----------------------
+Event : <%= "#{@ticket.event.id} - #{@ticket.event.title}" %> 
+TicketNo: <%= "#{@ticket.ticket_no} ( #{@ticket.ticket_type} $ #{@ticket.price} )" %> 
+State : <%= @ticket.state %> Table:<%= @ticket.table_id%>
+
+Sold by : <%= @ticket.agent.name if @ticket.agent.present? %>
+Allocated to : <%= (@ticket.person.name) if @ticket.person.present? %>

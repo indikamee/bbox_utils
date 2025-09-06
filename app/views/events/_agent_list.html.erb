@@ -1,0 +1,25 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% agents.sort_by{|t| t.name}.each do |agent| %>
+      <tr>
+        <td><%= agent.name %></td>
+        <td><%= agent.email %></td>
+        <td><%= agent.phone %></td>
+        <td>
+        <%= link_to 'Profile', agent_profile_person_path(agent, event_id: @event.id) ,  class:"btn btn-info btn-sm" %>
+        <%= (link_to 'Bulk Edit', bulk_edit_event_path(@event, agent_id: agent.id), class:"btn btn-warning btn-sm") if ( can? :bulk_edit, @event) and (can? :manage, agent)%>
+        <%= (link_to 'Bulk Email', bulk_email_event_path(@event, agent_id: agent.id), class:"btn btn-primary btn-sm", data: { turbo_method: :post}, data: { confirm: "Are you sure to email all tickets of \'#{agent.name}\'?" }) if ( can? :bulk_email, @event) and (can? :manage, agent)%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

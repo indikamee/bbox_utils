@@ -1,0 +1,36 @@
+<ul class="nav nav-pills nav-fill menu-buttons">	
+<li class="nav-item"> <%= link_to 'Back',  root_path , :class=>"btn btn-primary"%> </li>
+</ul>
+<h2 class="header_text">Users</h2>
+
+<table id="users_list" class="table table-striped" data-turbolinks="false">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Provider</th>
+      <th>Uid</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.provider %></td>
+        <td><%= user.uid %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= link_to 'Show', user , class:"btn btn-info btn-sm"%>
+        <%= link_to 'Impersonate', impersonate_user_path(user),  data: { turbo_method: :post} , class:"btn btn-info btn-sm" %>
+        <%= link_to 'Edit', edit_user_path(user)  , class:"btn btn-info btn-sm" %>
+        <!--%= link_to 'Destroy', user, method: :delete, data: { turbo_method: :delete, turbo_stream: true, turbo_confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm" %-->
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

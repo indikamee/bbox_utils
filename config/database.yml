@@ -1,0 +1,30 @@
+local: &local
+  adapter: postgresql
+  encoding: unicode
+  host: 172.30.144.1
+  username: tickets
+  password: tickets123
+  pool: 5
+  database: mora_tickets
+
+elephant: &elephant
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV['RDS_HOST'] %>
+  username: <%= ENV['RDS_USER'] %>
+  password: <%= ENV['RDS_PWD'] %>
+  database: <%= ENV['RDS_DB'] %>
+  pool: 5
+  sslmode: require
+
+development:
+  <<: *local
+  #<<: *elephant
+  
+test:
+  <<: *local
+  database: mora_tickets_test
+
+production:
+  <<: *elephant
+  

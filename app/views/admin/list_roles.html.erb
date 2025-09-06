@@ -1,0 +1,46 @@
+<h1>Roles</h1>
+
+
+<table id="role_list" class="table table-striped" data-turbolinks="false" data-admin-target="rolesTable" data-controller="admin">
+  <thead>
+    <tr>
+      <th>Role</th>
+      <th>Resource Type</th>
+      <th>Resource ID</th>
+      <th>Resource</th>
+      <th>Person</th>  
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Role.all.each do |r| %>
+        <% r.people.each do |p| %>
+      <tr>
+        <td><%= r.name %></td>
+        <td><%= r.resource_type %></td>
+        <td><%= r.resource_id %></td>
+        <td><%= r.resource_type&.constantize&.find(r.resource_id)&.title %></td>
+        <td  data-search="<%=p.name%>"> <%= link_to p.name, p %></td>
+        <td><%= link_to fa_icon('times'), 
+            admin_remove_role_path(role_info: {person_id: p.id, role_name: r.name, resource_type: r.resource_type , resource_id: r.resource_id}), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure remove role?' } , class:"btn btn-danger btn-sm", title: "Delete comment" %>
+        </td>
+      </tr>
+       <% end %>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </tfoot>
+</table>
+
+
+<h3>Add role</h3>
+<%= render "roles_form", role_info: @role_info %>

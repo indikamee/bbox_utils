@@ -1,0 +1,19 @@
+rails g scaffold Event title:string state:string
+rails g scaffold Agent name:string email:string phone:string
+rails g scaffold Person name:string email:string phone:string
+rails g scaffold Ticket event:references code:string type:string state:string price:float agent:references person:references
+
+rails g migration rename_ticket_code
+
+rails g migration add_table_id_to_ticket table_id:integer
+
+rails g migration add_user_to_people user:references
+
+
+rails g migration add_notes_to_ticket notes:string
+
+#Db backup
+pg_dump -h localhost -U postgres mora_tickets > mora_tickets_20230502
+
+rails g migration add_attended_at_to_ticket attended_at:datetime
+

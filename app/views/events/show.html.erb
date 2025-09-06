@@ -1,0 +1,24 @@
+
+<h1><%= @event.title %> </h1>
+<p>
+  <strong>State:</strong>
+  <%= @event.state %>
+</p>
+
+<h3>Agents</h3>
+<%= render "agent_list", agents: @agents %>
+
+
+<!--h3>Tickets</h3-->
+<!--%= render "tickets/list", tickets: @event.tickets %-->
+
+<h3>Tickets Summary</h3>
+<%= render "tickets/summary", tickets: @event.tickets %>
+
+<h3>Table Summary</h3>
+<div style='width: 300px;'>
+<%= render "tickets/count_by_table", tickets: @event.tickets %>
+</div>
+<%= (link_to 'Edit', edit_event_path(@event) , class:"btn btn-info") if can? :manage, @event%> 
+<%= (link_to 'Bulk Edit', bulk_edit_event_path(@event), class: 'btn btn-warning') if can? :bulk_edit, @event %>
+<%= link_to 'Back', events_path , class:"btn btn-info"%>

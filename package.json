@@ -1,0 +1,7 @@
+{
+  "name": "mora_tickets",
+  "private": true,
+  "dependencies": {
+    "mora_tickets": "file:"
+  }
+}

@@ -1,0 +1,25 @@
+<H1>Agent Profile : <%= @event&.title%><H1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @person.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @person.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @person.phone %>
+</p>
+<h3>Assigned Tickets</h3>
+<%= render "tickets/list", tickets: @tickets %>
+<h3>Tickets Summary</h3>
+<%= render "tickets/summary", tickets: @tickets %>
+
+
+<%= (link_to 'Bulk Edit', bulk_edit_event_path(@event, agent_id: @person.id), class: 'btn btn-info') if can? :bulk_edit, @event %>
+<%= link_to 'Back', @event, class:"btn btn-info"   %>
+

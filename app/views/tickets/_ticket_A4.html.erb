@@ -1,0 +1,112 @@
+<style type="text/css">  
+ .ticket-container {
+  position: relative;
+  text-align: left;
+  color: rgb(226, 230, 195);
+}
+
+/* Bottom left text */
+.tear-bottom {
+  position: absolute;
+  bottom: 8px;
+  left: 80px;
+}
+
+
+
+.ticket-bottom {
+  position: absolute;
+  bottom: 8px;
+  left: 270px;
+}
+
+
+/* Top left text */
+.top-left {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+
+/* Top right text */
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+
+/* Bottom right text */
+.bottom-right {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+}
+
+/* Centered text */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ticke-qr-code {
+  position: absolute;
+  top: 83%;
+  left: 58%;
+}
+
+
+.ticket-no {
+  position: absolute;
+  top: 78%;
+  left: 58%;
+}
+
+.ticket-no2 {
+  position: absolute;
+  top: 80%;
+  left: 12%;
+}
+
+.ticket-details {
+  position: absolute;
+  top: 70%;
+  left: 30%;
+  color: black;
+}
+
+.Student{
+  color:  #8B0000; 
+  font-weight: bold;
+  background-color: white;
+}
+
+.Kids{
+  color: #006400;
+  font-weight: bold;
+  background-color: white;
+}
+
+.Adult{
+  color: black;
+  font-weight: bold;
+  background-color: white; 
+}
+
+
+
+ </style>
+
+  <%# img_url = ticket.ticket_type.eql?('Kids') ? 'https://drive.google.com/uc?id=1bc3OY15EUmdKpl2WvUqi9Syb2ncmlTMH': 'https://drive.google.com/uc?id=1EnPYHJa5EB16KNDQfY3h3siZsfb_G9DN' %>
+  <% img_url = 'Pedura2025.jpg' %>
+  <%= image_tag img_url, width: 1024 %>
+  <div class="ticket-no"><H1 class=<%= "#{ticket.ticket_type}"%> ><%= "#{ticket.ticket_type} #{ticket.ticket_no}"%><H1></div>
+  <!-- div class="ticket-no2"><h3 class=<%= "#{ticket.ticket_type}"%> ><%= ticket.ticket_no%><H3></div-->
+  <!--div class="ticket-details"><h3><%= "#{ticket.ticket_type} $#{'%.0f' % ticket.price}"%><h3></div-->
+  
+  <% if (qrcode  != nil ) %>
+    <div class="ticke-qr-code" >
+      <%= image_tag get_qr_png(qrcode,230).to_data_url %>
+    </div>
+  <% end %>

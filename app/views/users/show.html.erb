@@ -1,0 +1,33 @@
+
+<h3 class="header_text">My Details</h3>
+
+<table class="table">
+<tr>
+    <th>User ID</th><td> <%=  @user.id.to_s +  (@user.provider? ? (" (Authenticated by " + @user.provider + ")") : "") %></td>
+</tr>
+<tr>
+    <th>Name</th><td> <%=  @user.name  %> <%= link_to "Edit", edit_user_path(@user), class:"btn btn-info btn-sm"  %></td>
+</tr>
+<tr>
+    <th>User Email</th><td> <%=  @user.email %></td>
+</tr>
+
+<%if @user.person.present? %>
+<tr>
+    <th>Person</th>
+    <td><%= link_to "#{@user.person.name} (#{@user.person.email})", @user.person %>  <%= link_to "Change Password", edit_password_user_path(@user), class:"btn btn-info btn-sm" %></td>
+</tr>
+<tr>
+    <th>Permissions</th>
+    <td> 
+        <% @user.person.roles.each do |role| %>
+        <%= "#{role.name} (#{role.resource_type} - #{role.resource_id})" %> <br/>    
+        <%end%>
+    </td>
+</tr>
+<% end %>
+
+</table>
+
+<%= link_to 'Back', :back, class: 'btn btn-info' %>
+

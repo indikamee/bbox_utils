@@ -1,0 +1,62 @@
+<% sum_grps = tickets.group(:ticket_type, :state).sum(:price)%>
+<% count_grps = tickets.group(:ticket_type, :state).count%>
+<% ticket_types = tickets.pluck(:ticket_type).uniq.sort%>
+<% states = tickets.pluck(:state).uniq.sort %>
+<table class="table table-striped table-bordered" id='tickets_summary' data-turbolinks="false">
+  <thead>
+    <tr>
+      <th>Type/State</th>
+      
+      <% sum_by_state = {} %>
+      <% count_by_state = {} %>
+
+      <% states.each do |st| %>
+        <th class=<%=st%>><%= st%> - #</th>
+        <th class=<%=st%>><%= st%> - Amount</th>
+        <% sum_by_state[st] = 0 %>
+        <% count_by_state[st] = 0 %>
+      <%end %>
+      <th>Total - #</th>
+      <th>Total - Amount</th>
+    </tr>
+  </thead>
+    <tbody>
+
+      <% ticket_types.each do |tt| %>
+      <tr>
+        <td class=<%=tt%>><%= tt%></td>
+        <% type_sum_total  = 0 %>
+        <% type_count_total  = 0 %>
+        <% states.each do |st| %>
+            <td align="right"># <%= count_grps[[tt,st]]%></td>
+            <td align="right"><%= number_to_currency(sum_grps[[tt,st]], precision: 0)%></td>
+            <% if count_grps[[tt,st]].present? %>
+            <% type_sum_total = type_sum_total + sum_grps[[tt,st]] %>
+            <% sum_by_state[st] = sum_by_state[st] +  sum_grps[[tt,st]] %>
+
+            <% type_count_total = type_count_total + count_grps[[tt,st]] %>
+            <% count_by_state[st] = count_by_state[st] + count_grps[[tt,st]] %>
+            <%end %>  
+         <%end %>
+        <td align="right"># <%= type_count_total%></td>
+        <td align="right"><%= number_to_currency(type_sum_total, precision: 0)%></td>
+      </tr>
+      <%end %>
+
+    
+      <tr>
+        <th>Total</th>
+        <% sum = 0%>
+        <% count = 0%>
+        <% states.each do |st| %>
+            <td align="right"><b># <%= count_by_state[st] %></b></td>
+            <td align="right"><b><%= number_to_currency(sum_by_state[st], precision: 0) %></b></td>
+            <% sum = sum + sum_by_state[st] %>
+            <% count = count + count_by_state[st]%>
+        <%end %>
+        <td align="right"><b># <%= count %></b></td>
+        <td align="right"><b><%= number_to_currency(sum, precision: 0)%></b></td>
+      </tr>
+    
+  </tbody>
+</table>

@@ -1,0 +1,5 @@
+<h2 class="header_text">Editing User</h2>
+<%= render 'form' %>
+
+<%= (link_to 'Update PWD', edit_password_user_path(@user) , class:"btn btn-info btn-sm") if can? :edit_password, @user %>
+<%= link_to 'Back', root_path %>

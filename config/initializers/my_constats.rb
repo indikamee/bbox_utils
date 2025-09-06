@@ -1,0 +1,3 @@
+PROVIDER_NAME = { google_oauth2: 'Google', google: 'Google', twitter: 'Twitter', facebook: 'Facebook', linkedin: 'LinkedIn', github: 'github'}
+ICONS = { google_oauth2: 'google plus', google: 'google', twitter: 'twitter', facebook: 'facebook', linkedin: 'linkedin', github: 'github'}
+COLOR = { google_oauth2: 'blue', google: 'blue', twitter: 'twitter', facebook: 'facebook', linkedin: 'linkedin', github: 'black' }

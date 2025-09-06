@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event: one
+  code: MyString
+  type: 
+  state: MyString
+  price: 1.5
+  agent: 
+  person: one
+
+two:
+  event: two
+  code: MyString
+  type: 
+  state: MyString
+  price: 1.5
+  agent: 
+  person: two

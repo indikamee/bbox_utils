@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>B.BOX Utils</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": Rails.env.production? ? "reload" : "" %>
+    
+    <link href="https://unpkg.com/slim-select@latest/dist/slimselect.css" rel="stylesheet"/>
+    <%= javascript_importmap_tags %>
+  
+    <% if content_for? :for_head %>
+      <%= yield :for_head %>
+    <% end %>
+  </head>
+  <body>
+    <%= render 'layouts/navbar' %>
+    <div id="main-container" class="container">
+      <%= flash_messages %>
+      <%= yield %>
+    </div>
+  <hr/>
+  <footer class="container-fluid text-center footer-container">
+    © 2025 Copyright: <a href="https://imasoftware.com.au/" target='_blank'>IMA Software Group</a>
+    <br/>	
+  </footer>
+  </body>
+</html>

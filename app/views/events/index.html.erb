@@ -1,0 +1,31 @@
+<h1>Events</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>State</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+     <% next if event.state.eql? ('closed') %>
+      <tr>
+        <td><%= event.title %></td>
+        <td><%= event.state %></td>
+        <td>
+          <%= (link_to 'Show', event,  class:"btn btn-info btn-sm") if can? :read, event %>
+          <%= (link_to 'Edit', edit_event_path(event),  class:"btn btn-info btn-sm") if can? :manage, event %>
+          <%= (link_to 'Destroy', event, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } ,  class:"btn btn-danger btn-sm") if can? :manage, event%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+<br>
+
+<%= (link_to 'New Event', new_event_path , class:"btn btn-info btn-sm") if can? :new, :event%>

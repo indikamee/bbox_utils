@@ -1,0 +1,47 @@
+<table class="table table-striped">	
+<tr>
+  <th>Event</th> 
+  <td><%= link_to "#{@ticket.event.id} - #{@ticket.event.title}" , @ticket.event %></td>
+</tr>
+<tr>
+  <th>TicketNo</th> 
+  <td><%= "#{@ticket.ticket_no} ( #{@ticket.ticket_type} $ #{@ticket.price} )" %> </td>
+</tr>
+<tr>
+  <th>State</th> 
+  <td>State: '<%= @ticket.state %>'  <%= "Table: #{@ticket.table_id}" if @ticket.table_id.present? %>
+             <%= fa_icon('user') + " #{@ticket.attended_at}" if @ticket.attended_at.present? %>  
+            <% if @ticket.attendable? && (can? :bulk_edit, @ticket.event)%>
+            <%=link_to fa_icon('check'), flag_attended_ticket_path(@ticket), data: { turbo_method: :post}, class:"btn btn-info btn-sm", title: "Mark attended"%>
+          <%end%>
+  </td>
+</tr>
+
+<tr>
+  <th>Agent</th> 
+  <td><%= (link_to @ticket.agent.name,  agent_profile_person_path(@ticket.agent, event_id: @ticket.event.id)) if @ticket.agent%></td>
+</tr>
+
+<tr>
+  <th>Person</th> 
+  <td><%= (link_to @ticket.person.name, @ticket.person) if @ticket.person %></td>
+</tr>
+
+<tr>
+  <th>Notes</th> 
+  <td><%=@ticket.notes %></td>
+</tr>
+
+
+</table>
+
+<%= render partial: "ticketimg", locals: { ticket: @ticket, qrcode: @qrcode}  %>
+
+<br/>
+<div>
+<%= (link_to 'Edit', edit_ticket_path(@ticket) , class:"btn btn-warning") if can? :edit, @ticket%> 
+<%= link_to 'Email', email_ticket_path(@ticket), data: { turbo_method: :post} , class:"btn btn-info"%> 
+<%= link_to 'Back', :back, class:"btn btn-info" %>
+</div>
+
+

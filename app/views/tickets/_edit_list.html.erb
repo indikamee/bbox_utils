@@ -1,0 +1,101 @@
+<div data-controller="tickets">
+<%= form_for(@bulk_ticket_details , :url => bulk_update_event_path, :method => :POST) do |f| %>
+
+<table class="table table-striped" id='tickets_list' data-turbolinks="false" data-tickets-target="ticketsTable">
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Type</th>
+      <th>ID</th>
+      <th>State</th>
+      <th>Price</th>
+      <th>Agent</th>
+      <th>Person</th>
+      <th>Table</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ticket_selection.sort_by{|t| [ 
+      t.ticket.agent ? t.ticket.agent.name : 'X',  # Adjusted to use a comparable attribute of agent
+      t.ticket.ticket_type.to_s,  # Convert to string to ensure comparability
+      t.ticket.seq || 0           # Default to 0 if seq is nil
+    ]}.each do |ticket_sel| %>
+      <%= fields_for 'ticket_selection[]',ticket_sel do |p| %>
+       <% ticket = ticket_sel.ticket %>
+      <tr>
+        <td><%= link_to ticket.event.id, ticket.event %></td>
+        <td class=<%=ticket.ticket_type%>><%= ticket.ticket_type %></td>
+        <td class=<%=ticket.ticket_type%>><%= p.check_box :selected %> <%= ticket.ticket_no %></td>
+        <td class=<%=ticket.state%>><%= ticket.state %></td>
+        <td><%= ticket.price %></td>
+        <td><%= (link_to ticket.agent.name, agent_profile_person_path(ticket.agent, event_id: ticket.event.id)) if ticket.agent %></td>
+        <td>
+           <%= (link_to ticket.person.name, ticket.person) if ticket.person %>
+           <%= ticket.notes %> 
+        </td>
+        <td><%= ticket.table_id %></td>
+        <%= p.hidden_field :ticket_id %>
+        <td>
+          <%= link_to 'Show', ticket, class:"btn btn-info btn-sm" %>
+          <%= (link_to 'Edit', edit_ticket_path(ticket), class:"btn btn-info btn-sm") if can? :manage, ticket %>
+          <%= (link_to 'Email', email_ticket_path(ticket), data: { turbo_method: :post} , class:"btn btn-info btn-sm") if can? :manage, ticket %>
+          <!-- %= link_to 'Destroy', ticket, method: :delete, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm" %-->
+        </td>
+      <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+   <tfoot>
+      <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+      </tr>
+    </tfoot>
+</table>
+
+<div>
+  <table class="table table-striped">
+    <tr>
+      <th>State</th><td><%=f.select :state , Ticket::STATES, {}, {class:'form-control'} %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>Sold by</th>
+      <td><%= f.collection_select :agent_id, @agents.sort_by(&:name), :id, :display_name, {:prompt=>true}, class:"form-control", :required => false %></td>
+      <td><%= link_to 'New Agent', new_agent_path , class: 'btn btn-info' %></td>
+    </tr>
+    <tr>
+      <th>Purchased by</th>
+      <td><%= f.collection_select :person_id, @people.sort_by(&:name), :id, :display_name, {:prompt=>true}, class:"form-control", :required => false %></td>
+      <td><%= link_to 'New Person', new_person_path , class: 'btn btn-info' %></td>
+    </tr>
+    <tr>
+      <th>Notes</th><td colspan=2><%= f.text_area :notes, class:"form-control", :required => false %></td>
+    </tr>
+
+    <tr>
+      <th>Table Number</th><td colspan=2><%= f.text_field :table_id, class:"form-control", :required => false %></td>
+    </tr>
+
+  <% if can? :edit, @event %>
+  <tr>
+      <th>Price Override</th><td colspan=2><%= f.text_field :price, class:"form-control", :required => false %></td>
+    </tr>
+    <%end %>
+    <tr>
+      <td colspan=3 align="right"> <%= f.submit 'Apply Bulk', class: 'btn btn-primary' %> </td>
+    </tr>
+  </table>
+</div>
+
+<%end%>
+</div>

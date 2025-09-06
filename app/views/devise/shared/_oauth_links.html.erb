@@ -1,0 +1,18 @@
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <%= button_to omniauth_authorize_path(resource_name, provider),
+          data: { turbo: false},
+          class: "btn btn-block btn-danger btn-social btn-#{ICONS[provider]}" do %>
+      <span><%= fa_icon("#{ICONS[provider]}") %></span>
+      <%= "Continue with #{PROVIDER_NAME[provider]}" %>
+    <% end %>
+  <% end %>
+  
+  <%= button_tag fa_icon('arrow-circle-right'), id: 'list_items', type: 'button', 
+    class: 'btn btn-block btn-social btn-envelope-o', 
+    data: {action: 'login#toggleLogin', login_target: "toggleLoginButton"}  do %>
+    <span><%= fa_icon("envelope-o") %></span>
+    <%= "Continue with Email" %>
+  <% end %>
+
+<% end %>

@@ -1,0 +1,14 @@
+Dockerize
+- https://semaphoreci.com/community/tutorials/dockerizing-a-ruby-on-rails-application
+- https://www.honeybadger.io/blog/containerizing-an-existing-rails-application/
+
+OAuth, permissions
+- https://www.codementor.io/@anaumov/rails-omniauth-with-devise--github-example-du107rmn7
+- https://www.nopio.com/blog/authentication-authorization-rails/
+* Note - order of application.js imports matter
+
+# Impersonate user
+https://github.com/ankane/pretender
+
+# Rolify
+https://github.com/RolifyCommunity/rolify
