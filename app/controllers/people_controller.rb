@@ -12,15 +12,6 @@ class PeopleController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.pdf do
-        #pdf = TestReportPdf.new(@test)
-        @event = Event.find(params[:event_id])
-        @tickets = @person.tickets.where(event: @event).order(:ticket_type)
-        pdf_file_name= tickets_pdf_name(@event, @person)
-
-        pdf = generate_tickets_pdf(@event, @tickets, root_url)
-        send_data pdf, filename: pdf_file_name.gsub('-','_') , type: 'application/pdf', disposition: 'inline'
-      end
     end
 
   end
@@ -31,7 +22,6 @@ class PeopleController < ApplicationController
   end
 
   def email
-    @event = Event.find(params[:event_id])
     @tickets = @person.tickets.where(event: @event).order(:ticket_type)
 
     TicketMailer.send_tickets_of_person(@person, @event, @tickets).deliver_now

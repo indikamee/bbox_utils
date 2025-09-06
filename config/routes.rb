@@ -37,5 +37,9 @@ Rails.application.routes.draw do
     delete :remove_role
   end
 
+  # Routes for AdminController
+  get 'admin/new_user', to: 'admin#new_user'
+  post 'admin/create_user', to: 'admin#create_user'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

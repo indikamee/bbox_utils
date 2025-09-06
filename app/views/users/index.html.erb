@@ -1,7 +1,6 @@
-<ul class="nav nav-pills nav-fill menu-buttons">	
-<li class="nav-item"> <%= link_to 'Back',  root_path , :class=>"btn btn-primary"%> </li>
-</ul>
 <h2 class="header_text">Users</h2>
+<%= link_to 'New User',  admin_new_user_path , class: "btn btn-primary"%> 
+<%= link_to 'Back',  :back , class: "btn btn-primary"%> 
 
 <table id="users_list" class="table table-striped" data-turbolinks="false">
   <thead>

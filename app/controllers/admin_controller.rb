@@ -54,8 +54,42 @@ class AdminController < ApplicationController
   def list_items
   end
 
+
+  def new_user
+   @user = User.new
+  end
+
+  def create_user
+    @user = User.new(user_params)
+    @user.confirmed_at = Time.now
+    if !@user.password.eql?(@user.password_confirmation)
+      respond_to do |format|
+        flash[:error] = "password doesn't match"
+        format.html { render :new_user }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+      return
+    end
+    if @user.save(validate: true)
+        flash[:notice] = 'User was successfully created.'
+        respond_to do |format|
+          format.html { redirect_to @user }
+          format.json { render :show, status: :created, location: @user }
+        end
+    else
+        respond_to do |format|
+            format.html { render :new_user }
+            format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+    end
+  end
+
   private 
   def role_params
     params.require(:role_info).permit(:person_id, :resource_type, :resource_id, :role_name)
+  end
+
+  def user_params
+    params.require(:user).permit(:email, :name, :password, :password_confirmation)
   end
 end

@@ -13,23 +13,6 @@
   <strong>Phone:</strong>
   <%= @person.phone %>
 </p>
-<% @person.tickets.map(&:event).uniq.each do |evt| %>
-  <% next if evt.state == 'closed' %>
-  <h3>Your Tickets for <%= evt.title%></h3> 
-  <%= link_to 'Email Tickets', email_person_path(@person,event_id: evt.id), data: { turbo_method: :post}, class:"btn btn-primary" %>
-  <%= link_to 'Download', person_path(@person, event_id: evt.id, format: :pdf), class:"btn btn-primary", target: :_blank%>
-  <%tickets = @person.tickets.where(event: evt).order(:ticket_type) %>
-  <%= render "tickets/list", tickets: tickets %>
 
-  <h3>Tickets Summary</h3>
-  <%= render "tickets/summary", tickets: tickets %>
-  
-  <% tickets.each do |t| %>
-    <%= render partial: "tickets/ticketimg", locals:{ ticket: t , qrcode: get_qr_code(abs_url(root_url, ticket_path(t)))} %>
-   <br/>
-  <% end %>
-  
-  
-<% end %>
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>
