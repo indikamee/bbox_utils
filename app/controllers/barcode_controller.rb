@@ -31,8 +31,8 @@ class BarcodeController < ApplicationController
 
     private
     def generate_label_pdf(row)
-        name        = row["Variable1"]    # Cat No
-        description = row["Variable2"] #row["Description"]  # Add this column in CSV if you want text at top-right
+        name        = row["Name"]    # Cat No
+        description = row["Description"] #row["Description"]  # Add this column in CSV if you want text at top-right
 
         files = []
 

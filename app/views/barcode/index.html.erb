@@ -6,16 +6,43 @@
 <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col">
         <div class="card h-100">
-            <%= image_tag "barcode.png", alt: "Barcode Generator", style: "width: 50px; height: 50px; object-fit: contain;" %>
-            
             <div class="card-body">
                 <h5 class="card-title">ITF14 Labels</h5>
-                <p class="card-text">Generate ITF14 lables warehouse.</p>
-                <!--a href="#" class="btn btn-primary">Go</a-->
+                <%= image_tag "ITF14.png",
+                            alt: "Barcode Generator",
+                            style: "width: 50px; height: 50px; object-fit: contain; cursor: pointer;",
+                            id: "itf14-thumb" %>
 
-                <%=render "upload_form" %>
+                <p class="card-text">
+                Generate ITF14 labels according to the specification. Select a CSV file formatted like this sample file :  
+                <%= link_to "sample_ITF14.csv", "/sample_ITF14.csv", download: "sample_ITF14.csv" %>.
+                The generated label PDFs will be downloaded as a ZIP archive.
+                </p>
+
+                <%= render "upload_form" %>
+
             </div>
         </div>
     </div>
-
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="itf14Modal" tabindex="-1" aria-labelledby="itf14ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <%= image_tag "ITF14.png", alt: "Barcode Generator", style: "max-width: 100%; height: auto;" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var thumb = document.getElementById("itf14-thumb");
+    thumb.addEventListener("click", function() {
+      var modal = new bootstrap.Modal(document.getElementById('itf14Modal'));
+      modal.show();
+    });
+  });
+</script>
