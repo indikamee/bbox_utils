@@ -1,6 +1,6 @@
 
 <h1>
-    <%= image_tag "barcode.png", alt: "Barcode Generator" %>
+    <%= fa_icon "barcode" %>
     Barcode Utilities
 </h1>
 <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -10,12 +10,12 @@
                 <h5 class="card-title">ITF14 Labels</h5>
                 <%= image_tag "ITF14.png",
                             alt: "Barcode Generator",
-                            style: "width: 50px; height: 50px; object-fit: contain; cursor: pointer;",
+                            style: "height: 150px; object-fit: contain; cursor: pointer;",
                             id: "itf14-thumb" %>
 
                 <p class="card-text">
-                Generate ITF14 labels according to the specification. Select a CSV file formatted like this sample file :  
-                <%= link_to "sample_ITF14.csv", "/sample_ITF14.csv", download: "sample_ITF14.csv" %>.
+                Generate ITF14 labels according to the specification. Select a CSV file with product details and barcode numbers formatted like this   
+                <%= link_to "sample_ITF14.csv", "/sample_ITF14.csv", download: "sample_ITF14.csv" %> file.
                 The generated label PDFs will be downloaded as a ZIP archive.
                 </p>
 
@@ -24,25 +24,37 @@
             </div>
         </div>
     </div>
-</div>
 
-<!-- Modal -->
-<div class="modal fade" id="itf14Modal" tabindex="-1" aria-labelledby="itf14ModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-body text-center">
-        <%= image_tag "ITF14.png", alt: "Barcode Generator", style: "max-width: 100%; height: auto;" %>
-      </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Other label format 1</h5>
+                    
+
+                    <span class="placeholder col-6"></span>
+                    <span class="placeholder w-75"></span>
+                    <span class="placeholder" style="width: 25%;"></span>
+
+                    <br/>
+                    <a class="btn btn-primary disabled placeholder col-4" aria-disabled="true"></a>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Other label format 2</h5>
+                    
+
+                    <span class="placeholder col-6"></span>
+                    <span class="placeholder w-75"></span>
+                    <span class="placeholder" style="width: 25%;"></span>
+
+                    <br/>
+                    <a class="btn btn-primary disabled placeholder col-4" aria-disabled="true"></a>
+            </div>
+        </div>
+    </div>
 </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var thumb = document.getElementById("itf14-thumb");
-    thumb.addEventListener("click", function() {
-      var modal = new bootstrap.Modal(document.getElementById('itf14Modal'));
-      modal.show();
-    });
-  });
-</script>
