@@ -30,17 +30,17 @@ class BarcodePdf < Prawn::Document
     # Draw rectangle for barcode
     x0 = to_pts(15)
     y0 = to_pts(70)
-    line_width(5)
+    line_width(2)
     stroke_rectangle [x0, y0], barcode_width, barcode_height
 
     # Draw barcode inside rectangle
     op=Barby::PrawnOutputter.new(barcode)
-    op.xdim = to_pts(110) / op.full_width  # scale each module
+    op.xdim = to_pts(100) / op.full_width  # scale each module
     op.annotate_pdf(
       self,
-      x: to_pts(20),
+      x: to_pts(25),
       y: y0 - to_pts(32),
-      width: to_pts(110),
+      width: to_pts(100),
       height: to_pts(32)
     )
 

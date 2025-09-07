@@ -4,7 +4,7 @@ namespace :barcodes do
         require "csv"
 
 
-        csv_path   = Rails.root.join("tmp/VariableData.csv")
+        csv_path   = Rails.root.join("tmp/VariableData2.csv")
         output_dir = Rails.root.join("tmp/barcodes")
 
         FileUtils.mkdir_p(output_dir)
@@ -19,17 +19,17 @@ namespace :barcodes do
             pdf.render_file pdf_path
             puts "Generated UNIT: #{pdf_path}"
 
-            number      = row["BC_Inner"]      # Barcode number
-            pdf_path = File.join(output_dir, "#{name}-#{description} - BC LABEL INNER FA(OL)v1.01.pdf")
-            pdf = BarcodePdf.new(number,name,description)
-            pdf.render_file pdf_path
-            puts "Generated UNIT: #{pdf_path}"
+            # number      = row["BC_Inner"]      # Barcode number
+            # pdf_path = File.join(output_dir, "#{name}-#{description} - BC LABEL INNER FA(OL)v1.01.pdf")
+            # pdf = BarcodePdf.new(number,name,description)
+            # pdf.render_file pdf_path
+            # puts "Generated UNIT: #{pdf_path}"
 
-            number      = row["BC_Outer"]      # Barcode number
-            pdf_path = File.join(output_dir, "#{name}-#{description} - BC LABEL OUTER FA(OL)v1.01.pdf")
-            pdf = BarcodePdf.new(number,name,description)
-            pdf.render_file pdf_path
-            puts "Generated UNIT: #{pdf_path}"
+            # number      = row["BC_Outer"]      # Barcode number
+            # pdf_path = File.join(output_dir, "#{name}-#{description} - BC LABEL OUTER FA(OL)v1.01.pdf")
+            # pdf = BarcodePdf.new(number,name,description)
+            # pdf.render_file pdf_path
+            # puts "Generated UNIT: #{pdf_path}"
         end
     end
 
