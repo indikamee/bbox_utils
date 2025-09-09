@@ -1,11 +1,25 @@
 <%= form_with url: barcode_generate_labels_path, 
-              method: :post, 
-              local: true, 
-              data: { turbo: false }, 
-              html: { multipart: true, class: "p-4 border rounded bg-light" } do |form| %>
+  method: :post, 
+  local: true, 
+  data: { turbo: false }, 
+  html: { multipart: true, class: "p-4 border rounded bg-light" } do |form| %>
   <div class="mb-3">
     <%= form.label :csv_file, "CSV File", class: "form-label" %>
     <%= form.file_field :csv_file, accept: '.csv', class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <div class="form-check form-check-inline">
+      <%= form.check_box :unit, { checked: true, class: "form-check-input" } %>
+      <%= form.label :unit, "Unit", class: "form-check-label ms-1" %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.check_box :inner, { checked: true, class: "form-check-input" }, "1", "0" %>
+      <%= form.label :inner, "Inner", class: "form-check-label ms-1" %>
+    </div>
+    <div class="form-check form-check-inline">
+      <%= form.check_box :outer, { checked: true, class: "form-check-input" }, "1", "0" %>
+      <%= form.label :outer, "Outer", class: "form-check-label ms-1" %>
+    </div>
   </div>
   <div>
     <%= form.submit "Generate Labels", class: "btn btn-primary" %>
